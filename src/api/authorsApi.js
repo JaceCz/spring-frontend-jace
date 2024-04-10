@@ -11,17 +11,35 @@ export const getAuthor = (authorId) => {
       .then(res => res.json());
   };
   
-  // Create Author
-  export const createAuthor = (firstName, lastName) => {
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ firstName, lastName })
-    };
+
   
-    return fetch("http://localhost:8080/api/v1/authors", requestOptions)
-      .then(response => response.json());
+  // Create Author
+ // Function to create a new author
+ export const createAuthor = (firstName, lastName) => {
+  const requestOptions = {
+    method: 'POST',
+    redirect: 'follow'
   };
+
+
+  const url = new URL("http://localhost:8080/api/v1/authors");
+  url.searchParams.append("firstName", firstName);
+  url.searchParams.append("lastName", lastName);
+
+  return fetch(url, requestOptions)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Failed to create author: ' + response.statusText);
+      }
+      return response.text();  
+    })
+    .catch(error => {
+      console.error('Error creating author:', error);
+      throw error;  
+    });
+};
+
+
   
 
   // Update Author
@@ -42,7 +60,7 @@ export const updateAuthor = (authorId, firstName, lastName) => {
           if (!response.ok) {
               throw new Error('Failed to update author');
           }
-          return response.text();  // assuming the response is plain text
+          return response.text(); 
       });
 };
 

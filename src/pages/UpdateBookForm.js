@@ -5,29 +5,35 @@ import { Link } from 'react-router-dom';
 function UpdateBookForm() {
     const [isbn, setIsbn] = useState('');
     const [title, setTitle] = useState('');
-    const [editionNumber, setEditionNumber] = useState('');
+    const [editionNumber, setEditionNumber] = useState(0);  // initialized to 0 for a number input
     const [copyright, setCopyright] = useState('');
-    const [authorId, setAuthorId] = useState('');
+    const [authorId, setAuthorId] = useState(0);  // initialized to 0 assuming author ID is a number
 
     const handleLoadBook = (e) => {
         e.preventDefault();
         getBook(isbn).then(book => {
             if (book) {
-                setTitle(book.title);
-                setEditionNumber(book.editionNumber);
-                setAuthorId(book.authorId);
-                setCopyright(book.copyright);
+                setTitle(book.title || '');
+                setEditionNumber(book.editionNumber || 0);
+                setAuthorId(book.authorId || 0);
+                setCopyright(book.copyright || '');
             } else {
                 alert("Book not found!");
             }
+        }).catch(err => {
+            console.error('Error loading book:', err);
+            alert('Error loading book');
         });
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        updateBook(isbn, { title, editionNumber, copyright, authorId })
+        updateBook(isbn, title, editionNumber, copyright, authorId)
             .then(() => alert('Book Updated'))
-            .catch(err => alert('Error updating book'));
+            .catch(err => {
+                console.error('Error updating book:', err);
+                alert(`Error updating book: ${err.message}`);
+            });
     };
 
     return (
@@ -47,7 +53,7 @@ function UpdateBookForm() {
                 </label>
                 <label>
                     Edition Number:
-                    <input type="number" value={editionNumber} onChange={(e) => setEditionNumber(e.target.value)} required />
+                    <input type="number" value={editionNumber} onChange={(e) => setEditionNumber(Number(e.target.value))} required />
                 </label>
                 <label>
                     Copyright:
@@ -55,7 +61,7 @@ function UpdateBookForm() {
                 </label>
                 <label>
                     Author ID:
-                    <input type="text" value={authorId} onChange={(e) => setAuthorId(e.target.value)} required />
+                    <input type="text" value={authorId} onChange={(e) => setAuthorId(Number(e.target.value))} required />
                 </label>
                 <button type="submit">Update Book</button>
             </form>

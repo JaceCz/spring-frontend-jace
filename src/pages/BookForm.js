@@ -1,61 +1,47 @@
-import React, { useState, useEffect } from 'react';
-import { createBook, updateBook, getBook } from '../api/booksApi';
-import { getAllAuthors } from '../api/authorsApi';
+import React, { useState } from 'react';
+import { createBook } from '../api/booksApi';
 import { Link } from 'react-router-dom';
 
-function BookForm({ bookId }) {
-    const [book, setBook] = useState({
-        isbn: '',
-        title: '',
-        editionNumber: '',
-        copyright: '',
-        authorId: ''
-    });
-    const [authors, setAuthors] = useState([]);
-
-    useEffect(() => {
-        getAllAuthors().then(setAuthors);
-        if (bookId) {
-            getBook(bookId).then(data => setBook({ ...data }));
-        }
-    }, [bookId]);
-
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        setBook(prevBook => ({
-            ...prevBook,
-            [name]: value
-        }));
-    };
+function BookForm() {
+    const [isbn, setIsbn] = useState('');
+    const [title, setTitle] = useState('');
+    const [editionNumber, setEditionNumber] = useState('');
+    const [copyright, setCopyright] = useState('');
+    const [authorId, setAuthorId] = useState('');
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        if (bookId) {
-            updateBook(book.isbn, book.title, book.editionNumber, book.copyright, book.authorId).then(() => {
-                alert('Book updated');
-            });
-        } else {
-            createBook(book.isbn, book.title, book.editionNumber, book.copyright, book.authorId).then(() => {
-                alert('Book created');
-            });
+        if (!isbn || !title || !editionNumber || !copyright || !authorId) {
+            alert('All fields must be filled');
+            return;
         }
+
+        createBook(isbn, title, editionNumber, copyright, authorId)
+            .then(response => {
+                alert('Book created successfully.');
+                // Clearing the form if needed
+                setIsbn('');
+                setTitle('');
+                setEditionNumber('');
+                setCopyright('');
+                setAuthorId('');
+            })
+            .catch(error => {
+                console.log('Creation failed with error:', error);
+                alert('Failed to create book. Please check console for details.');
+            });
     };
 
     return (
         <div>
+            <h1>Create Book</h1>
             <form onSubmit={handleSubmit}>
-                <label>ISBN:<input type="text" name="isbn" value={book.isbn} onChange={handleChange} required /></label>
-                <label>Title:<input type="text" name="title" value={book.title} onChange={handleChange} required /></label>
-                <label>Edition Number:<input type="number" name="editionNumber" value={book.editionNumber} onChange={handleChange} required /></label>
-                <label>Copyright:<input type="text" name="copyright" value={book.copyright} onChange={handleChange} required /></label>
-                <label>Author:
-                    <select name="authorId" value={book.authorId} onChange={handleChange} required>
-                        {authors.map(author => (
-                            <option key={author.id} value={author.id}>{author.firstName} {author.lastName}</option>
-                        ))}
-                    </select>
-                </label>
-                <button type="submit">Submit</button>
+                <label>ISBN:<input type="text" value={isbn} onChange={e => setIsbn(e.target.value)} required /></label>
+                <label>Title:<input type="text" value={title} onChange={e => setTitle(e.target.value)} required /></label>
+                <label>Edition Number:<input type="number" value={editionNumber} onChange={e => setEditionNumber(e.target.value)} required /></label>
+                <label>Copyright:<input type="text" value={copyright} onChange={e => setCopyright(e.target.value)} required /></label>
+                <label>Author ID:<input type="text" value={authorId} onChange={e => setAuthorId(e.target.value)} required /></label>
+                <button type="submit">Create Book</button>
             </form>
             <Link to="/">Back to Main</Link>
         </div>
