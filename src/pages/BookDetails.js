@@ -8,8 +8,7 @@ function BookDetails() {
 
   useEffect(() => {
     getBook(isbn).then(setBook);
-  }, [isbn]);
-
+  }, [isbn]); 
   return (
     <div>
       <h1>Book Details</h1>

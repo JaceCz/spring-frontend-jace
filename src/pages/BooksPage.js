@@ -21,6 +21,7 @@ function BooksPage() {
                     <Link to={`/books/delete?isbn=${book.isbn}`}>Delete</Link>
                 </div>
             ))}
+             <Link to="/">Back to Main</Link>
         </div>
     );
 }

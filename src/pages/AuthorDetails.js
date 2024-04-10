@@ -3,12 +3,12 @@ import { getAuthor } from '../api/authorsApi';
 import { useParams } from 'react-router-dom';
 
 function AuthorDetails() {
-  const { authorId } = useParams();
+  const { authorId } = useParams(); 
   const [author, setAuthor] = useState({});
 
   useEffect(() => {
     getAuthor(authorId).then(setAuthor);
-  }, [authorId]);
+  }, [authorId]); 
 
   return (
     <div>

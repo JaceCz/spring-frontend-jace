@@ -21,6 +21,7 @@ function AuthorsPage() {
                     <Link to={`/authors/delete?authorId=${author.id}`}>Delete</Link>
                 </div>
             ))}
+             <Link to="/">Back to Main</Link>
         </div>
     );
 }

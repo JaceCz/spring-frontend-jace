@@ -7,8 +7,17 @@ export const getAllBooks = () => {
   // Get Specific Book
   export const getBook = (isbn) => {
     return fetch(`http://localhost:8080/api/v1/books/${isbn}`)
-      .then(res => res.json());
-  };
+        .then(res => {
+            if (!res.ok) {
+                throw new Error(`Network response was not ok: ${res.status} ${res.statusText}`);
+            }
+            return res.text();  // First convert to text
+        })
+        .then(text => {
+            return text.length ? JSON.parse(text) : {};  // Then parse text as JSON if not empty
+        });
+};
+
   
   // Create Book
   export const createBook = (isbn, title, editionNumber, copyright, authorId) => {
