@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MainPage from './pages/MainPage';
 import AuthorsPage from './pages/AuthorsPage';
 import AuthorForm from './pages/AuthorForm';
@@ -13,17 +13,17 @@ import DeleteBookForm from './pages/DeleteBookForm';
 function App() {
     return (
         <Router>
-            <Switch>
-                <Route path="/" exact component={MainPage} />
-                <Route path="/authors" exact component={AuthorsPage} />
-                <Route path="/authors/new" component={AuthorForm} />
-                <Route path="/authors/update" component={UpdateAuthorForm} />
-                <Route path="/authors/delete" component={DeleteAuthorForm} />
-                <Route path="/books" exact component={BooksPage} />
-                <Route path="/books/new" component={BookForm} />
-                <Route path="/books/update" component={UpdateBookForm} />
-                <Route path="/books/delete" component={DeleteBookForm} />
-            </Switch>
+            <Routes>
+                <Route path="/" element={MainPage} />
+                <Route path="/authors" element={AuthorsPage} />
+                <Route path="/authors/new" element={AuthorForm} />
+                <Route path="/authors/update" element={UpdateAuthorForm} />
+                <Route path="/authors/delete" element={DeleteAuthorForm} />
+                <Route path="/books" element={BooksPage} />
+                <Route path="/books/new" element={BookForm} />
+                <Route path="/books/update" element={UpdateBookForm} />
+                <Route path="/books/delete" element={DeleteBookForm} />
+            </Routes>
         </Router>
     );
 }

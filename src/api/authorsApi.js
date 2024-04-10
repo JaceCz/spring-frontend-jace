@@ -42,6 +42,6 @@ export const getAuthor = (authorId) => {
     };
   
     return fetch(`http://localhost:8080/api/v1/authors/${authorId}`, requestOptions)
-      .then(response => response.text()); // Adjust according to how your API responds
+      .then(response => response.text()); 
   };
   
