@@ -13,13 +13,17 @@ function UpdateAuthorForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input type="text" placeholder="Author ID" value={authorId} onChange={(e) => setAuthorId(e.target.value)} required />
-            <input type="text" placeholder="First Name" value={firstName} onChange={(e) => setFirstName(e.target.value)} required />
-            <input type="text" placeholder="Last Name" value={lastName} onChange={(e) => setLastName(e.target.value)} required />
-            <button type="submit">Update Author</button>
+        <div>
+            <h1>Update Author</h1>
+            <form onSubmit={handleSubmit}>
+                <input type="text" placeholder="Author ID" value={authorId} onChange={(e) => setAuthorId(e.target.value)} required />
+                <input type="text" placeholder="First Name" value={firstName} onChange={(e) => setFirstName(e.target.value)} required />
+                <input type="text" placeholder="Last Name" value={lastName} onChange={(e) => setLastName(e.target.value)} required />
+                <button type="submit">Update Author</button>
+            </form>
+            <p></p>
             <Link to="/">Back to Main</Link>
-        </form>
+        </div>
     );
 }
 

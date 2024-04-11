@@ -28,6 +28,7 @@ function AuthorForm({ authorId }) {
 
     return (
         <div>
+            <h1>Create Author</h1>
             <form onSubmit={handleSubmit}>
                 <label>
                     First Name:
@@ -39,6 +40,7 @@ function AuthorForm({ authorId }) {
                 </label>
                 <button type="submit">Submit</button>
             </form>
+            <p></p>
             <Link to="/">Back to Main</Link>
         </div>
     );

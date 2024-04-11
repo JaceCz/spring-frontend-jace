@@ -65,6 +65,7 @@ function UpdateBookForm() {
                 </label>
                 <button type="submit">Update Book</button>
             </form>
+            <p></p>
             <Link to="/">Back to Main</Link>
         </div>
     );

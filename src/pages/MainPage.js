@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function MainPage() {
     return (
         <div>
-            <h1>Book and Author Management System</h1>
+            <h1>Java Spring Database Project - Jace Cosmoz</h1>
             <h2>Authors</h2>
             <ul>
                 <li><Link to="/authors">Get All Authors</Link></li>

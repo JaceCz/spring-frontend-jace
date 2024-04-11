@@ -1,13 +1,37 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #86d9f7; 
+  background: url('https://images.saymedia-content.com/.image/t_share/MTkyOTkyMzE2OTQ3MjQ0MjUz/website-background-templates.jpg') no-repeat center center fixed; 
+  background-size: cover;
+  color: #040404; 
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+*,
+*::before,
+*::after {
+  box-sizing: border-box; /* Helps work with padding and borders within all elements */
+}
+
+a {
+  color: #eb1f1f;
+  text-decoration: none; /* Removes underline from all links */
+}
+
+a:hover {
+  text-decoration: underline; /* Adds underline on hover for links */
+}
+
+input, button, textarea, select {
+  font: inherit; /* Ensures form elements use the body font */
+}
+
+button {
+  cursor: pointer; /* Shows a pointer on hover over buttons to indicate interactivity */
 }

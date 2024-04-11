@@ -13,11 +13,15 @@ function DeleteAuthorForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input type="text" placeholder="Author ID" value={authorId} onChange={(e) => setAuthorId(e.target.value)} required />
-            <button type="submit">Delete Author</button>
+        <div>
+            <h1>Delete Author</h1>
+            <form onSubmit={handleSubmit}>
+                <input type="text" placeholder="Author ID" value={authorId} onChange={(e) => setAuthorId(e.target.value)} required />
+                <button type="submit">Delete Author</button>
+            </form>
+            <p></p>
             <Link to="/">Back to Main</Link>
-        </form>
+        </div>
     );
 }
 

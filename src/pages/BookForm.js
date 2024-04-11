@@ -41,8 +41,10 @@ function BookForm() {
                 <label>Edition Number:<input type="number" value={editionNumber} onChange={e => setEditionNumber(e.target.value)} required /></label>
                 <label>Copyright:<input type="text" value={copyright} onChange={e => setCopyright(e.target.value)} required /></label>
                 <label>Author ID:<input type="text" value={authorId} onChange={e => setAuthorId(e.target.value)} required /></label>
+                <p></p>
                 <button type="submit">Create Book</button>
             </form>
+            <p></p>
             <Link to="/">Back to Main</Link>
         </div>
     );

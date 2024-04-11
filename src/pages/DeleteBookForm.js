@@ -19,11 +19,12 @@ function DeleteBookForm() {
             <h1>Delete Book</h1>
             <form onSubmit={handleSubmit}>
                 <label>
-                    ISBN:
+                    ISBN:     
                     <input type="text" value={isbn} onChange={(e) => setIsbn(e.target.value)} required />
                 </label>
                 <button type="submit">Delete Book</button>
             </form>
+            <p></p>
             <Link to="/">Back to Main</Link>
         </div>
     );

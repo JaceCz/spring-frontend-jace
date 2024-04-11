@@ -43,6 +43,7 @@ function ViewBookForm() {
                     <p>Copyright: {copyright}</p>
                 </div>
             )}
+            <p></p>
             <Link to="/">Back to Main</Link>
         </div>
     );

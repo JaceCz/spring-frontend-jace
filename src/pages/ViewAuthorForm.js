@@ -46,7 +46,7 @@ function ViewAuthorForm() {
                     <p>Last Name: {author.lastName || "N/A"}</p>
                 </div>
             ) : (
-                <p>No author details to display.</p>
+                <p></p>
             )}
             <Link to="/">Back to Main</Link>
         </div>
